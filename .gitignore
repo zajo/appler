@@ -1,0 +1,6 @@
+.DS_Store
+src/*.OBJ
+src/*.EXE
+src/*.ROM
+src/*.DSK
+src/65C02.INC

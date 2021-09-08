@@ -1,0 +1,131 @@
+
+# лллллллллллллллллллллллллллллллллллллллллллллллл #
+# лл                                            лл #
+# лл   APPLER (tm) -  XT/AT Apple ][ Emulator   лл #
+# лл                                            лл #
+# лл  by Emil Dochevsky & Alexander Patalensky  лл #
+# лл                                            лл #
+# лл   --- MAKE FILE FOR  EGA/VGA VERSION ---   лл #
+# лл                                            лл #
+# лллллллллллллллллллллллллллллллллллллллллллллллл #
+
+TLINK_OPTIONS = /x/i
+LINK_FILENAME = LINK.LST
+EXE_FILENAME  = APPLER.EXE
+
+appler.exe:                                        \
+  startup.obj                                      \
+  65c02.obj                                        \
+  memory.obj                                       \
+  emulate.obj                                      \
+  data.obj                                         \
+  keyboard.obj                                     \
+  taskctrl.obj                                     \
+  conio.obj                                        \
+  debug.obj                                        \
+  fm.obj                                           \
+  dm.obj                                           \
+  kbdsetup.obj                                     \
+  about.obj                                        \
+  help.obj
+  tlink @$(LINK_FILENAME), $(EXE_FILENAME) $(TLINK_OPTIONS)
+
+startup.obj:                                       \
+  startup.asm                                      \
+  globals.inc                                      \
+  interfac.inc                                     \
+  fm.inc
+  tasm startup.asm
+
+65c02.obj:                                         \
+  65c02.asm                                        \
+  globals.inc                                      \
+  interfac.inc
+  tasm 65C02.asm /kh1100 /dUpdate > 65C02.inc
+
+memory.obj:                                        \
+  memory.asm                                       \
+  globals.inc                                      \
+  interfac.inc
+  tasm memory.asm /m1
+
+emulate.obj:                                       \
+  emulate.asm                                      \
+  globals.inc                                      \
+  interfac.inc                                     \
+  65c02.inc                                        \
+  video.asm                                        \
+  dram.inc                                         \
+  floppy.inc
+  tasm emulate.asm
+
+data.obj:                                          \
+  data.asm                                         \
+  globals.inc                                      \
+  interfac.inc
+  tasm data.asm
+
+keyboard.obj:                                      \
+  keyboard.asm                                     \
+  globals.inc                                      \
+  interfac.inc
+  tasm keyboard.asm
+
+taskctrl.obj:                                      \
+  taskctrl.asm                                     \
+  globals.inc                                      \
+  interfac.inc
+  tasm taskctrl.asm
+
+conio.obj:                                         \
+  conio.asm                                        \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc
+  tasm conio.asm
+
+debug.obj:                                         \
+  debug.asm                                        \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc                                        \
+  fm.inc
+  tasm debug.asm
+
+fm.obj:                                            \
+  fm.asm                                           \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc                                        \
+  fm.inc
+  tasm fm.asm
+
+dm.obj:                                            \
+  dm.asm                                           \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc                                        \
+  fm.inc
+  tasm dm.asm
+
+kbdsetup.obj:                                      \
+  kbdsetup.asm                                     \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc
+  tasm kbdsetup.asm
+
+about.obj:                                         \
+  about.asm                                        \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc
+  tasm about.asm
+
+help.obj:                                          \
+  help.asm                                         \
+  globals.inc                                      \
+  interfac.inc                                     \
+  conio.inc
+  tasm help.asm
+

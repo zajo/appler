@@ -1,0 +1,15 @@
+startup  +
+65C02    +
+memory   +
+emulate  +
+data     +
+keyboard +
+taskctrl +
+conio    +
+debug    +
+fm       +
+dm       +
+kbdsetup +
+about    +
+help
+
