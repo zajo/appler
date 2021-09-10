@@ -500,7 +500,7 @@ a_CtrlTable     db      None,1Bh,'1234567890-=',8                 ; CtrlTable
                 db      ALT,' ',Caps
                 db      k_F1,k_F2,k_F3,k_F4,k_F5,k_F6,k_F7,k_F8,k_F9,k_F10
                 db      k_Pause,k_Reset,None,0Bh,None,'-'
-                db      8,None,15h,'+',None,0Ah,None,9,4
+                db      8,None,15h,'+',None,0Ah,None,9,k_Reset
                 db      None,None,None,None,k_F12
 
 a_ShiftTable    db      None,1Bh,'!@#$%^&*()_+',15h               ; ShiftTable
@@ -531,9 +531,9 @@ a_CpsShfTable   db      None,1Bh,'!@#$%^&*()_+',15h               ; CpsShfTable
                 db      k_NumLock,k_Reset,'789-456+1230.'
                 db      None,None,None,None,k_F12
 
-a_AltTable      db      None,1Bh,'1234567890-=',8 ; AltTable
+a_AltTable      db      None,k_DosShell,'1234567890-=',8 ; AltTable
                 db      9,11h,17h,5,12h,14h,19h,15h,9,0Fh,10h,1Bh,1Dh,0Dh
-                db      Ctrl,1,13h,k_DosShell,6,7,8,0Ah,0Bh,0Ch,';',27h,1Eh
+                db      Ctrl,1,13h,4,6,7,8,0Ah,0Bh,0Ch,';',27h,1Eh
                 db      LShift,0,1Ah,k_QuitAppler,3,16h,2,0Eh,0Dh,',./',RShift,'*'
                 db      ALT,' ',Caps
                 db      k_F1,k_F2,k_F3,k_F4,k_F5,k_F6,k_F7,k_F8,k_F9,k_F10
@@ -621,9 +621,9 @@ d_CpsShfTable   db      None,0Ch,'!@#$%^&*()_+',0Bh
                 db      5,19h,6,'+',2,8,4,9,0Ah
                 db      None,None,None,None,None
 
-d_AltTable      db      None,0Ch,'1234567890-=',0Bh
+d_AltTable      db      None,1Ah,'1234567890-=',0Bh
                 db      0Dh,'qwertyuiop[]',18h
-                db      Ctrl,'as',1Ah,'fghjkl;',27h,'`'
+                db      Ctrl,'asdfghjkl;',27h,'`'
                 db      LShift,'\z',1Bh,'cvbnm,./',RShift,'*'
                 db      ALT,' ',Caps
                 db      0Eh,0Fh,10h,11h,12h,13h,14h,15h,16h,17h
@@ -644,7 +644,7 @@ k_NormalTable   db      None,'..............'
 k_AltTable      db      None,1Ah,'.............'
                 db      '..............'
                 db      Ctrl,'............'
-                db      LShift,'...........',RShift,'.'
+                db      LShift,'..',1Bh,'........',RShift,'.'
                 db      ALT,'.',Caps
                 db      0Eh,0Fh,10h,11h,12h,13h,14h,15h,16h,17h
                 db      k_NumLock,None,'....'

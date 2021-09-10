@@ -2756,7 +2756,7 @@ SM_ok1:         ScreenIOservice _STRINGPRINT
 SM_Ret:         pop     cx bx ax
                 ret
 
-FirstMsg        db      1,0Ah,'Appler On-Line Debugger, v1.0',0
+FirstMsg        db      1,0Ah,'Appler Debugger, v1.0',0
 UnknownCmd      db      'Unknown command',0
 IllegalNum      db      'Bad address or number',0
 NotHexMes       db      'Hex digit expected',0

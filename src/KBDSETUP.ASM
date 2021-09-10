@@ -669,10 +669,10 @@ ShowFilespec:   push    ax bx cx dx
                 ret
 
 
-SA_Str          db      'зKeyboard Assignmentддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©',0
+SA_Str          db      'зKeyboard Mapдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©',0
                 db      'Ё                                                                              Ё',0
                 db      'юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды',0
-SA_Message      db      1,0Fh,'Press the key to be changed',0
+SA_Message      db      1,0Fh,'Press a key to remap',0
 SA_Keyboard     db      'здд©здд©здд©здд©здд©здд©здд©здд©здд©здд©здд©здд©здд©здд©здд©  здд©здд©здд©здд©',0
                 db      'Ё  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  ЁЁ  Ё  Ё  ЁЁ  ЁЁ  ЁЁ  Ё',0
                 db      'юддыюддыюддыюддыюддыюддыюддыюддыюддыюддыюддыюддыюддыюддыюдды  юддыюддыюддыюдды',0
@@ -712,7 +712,7 @@ SA_Loop1:       ScreenIOservice _STRINGPRINT
                 dec     dx
                 jnz     SA_Loop1
                 mov     bx,offset SA_Message
-                gotoxy  8,51
+                gotoxy  8,58
                 cmp     SA_MesFlag,0
                 jz      SA_Dont1
                 ScreenIOservice _STRINGPRINT

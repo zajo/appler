@@ -140,58 +140,57 @@ ST_Str          db      'ÚKeysÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿',0
                 db      '³                                     ³',0
                 db      'ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ',0
 ST_Str1         db      1,0Fh,'At any time:',0
-ST_Str2         db      1,7,'<Alt+D>        DOS Shell',0
-ST_Str3         db      1,7,'<Alt+X>        Quit to DOS',0
-ST_Str4         db      1,7,'<Alt+F1>       On-Line Debugger',0
-ST_Str5         db      1,7,'<Alt+F2>       File Manager',0
-ST_Str6         db      1,7,'<Alt+F3>       Disk Manager',0
-ST_Str7         db      1,7,'<Alt+F4>       Keyboard Setup',0
-ST_Str8         db      1,7,'<Alt+F9>       About Appler',0
-ST_Str9         db      1,7,'<Alt+F10>      This Help Srceen',0
-ST_Str10        db      1,0Fh,'In Apple ][:',0
-ST_Str11        db      1,7,'<Ctrl+Break> Apple ][ Reset',0
+ST_Str2         db      1,7,'<Alt+F1>     Debugger',0
+ST_Str3         db      1,7,'<Alt+F2>     File Manager',0
+ST_Str4         db      1,7,'<Alt+F3>     Disk Manager',0
+ST_Str5         db      1,7,'<Alt+F4>     Keyboard Setup',0
+ST_Str6         db      1,7,'<Alt+F9>     About Appler',0
+ST_Str7         db      1,7,'<Alt+F10>    This Help Srceen',0
+ST_Str8         db      1,7,'<Alt+Esc>    DOS Shell',0
+ST_Str9         db      1,7,'<Alt+X>      Quit Appler',0
+ST_Str10        db      1,0Fh,'While the Apple ][ is running:',0
+ST_Str11        db      1,7,'<Ctrl+Del>   Apple ][ Reset',0
 ST_Str12        db      1,7,'<F12>        Toggle Realtime Mode',0
 ShowKeys:       gotoxy  3,0
                 mov     bx,offset ST_Str
-                mov     dh,15
+                mov     dh,17
                 call    DrawBox
                 print   5,2,ST_Str1
-                print   6,4,ST_Str2
-                print   7,4,ST_Str3
-                print   8,4,ST_Str4
-                print   9,4,ST_Str5
-                print   10,4,ST_Str6
-                print   11,4,ST_Str7
-                print   12,4,ST_Str8
-                print   13,4,ST_Str9
-                print   15,2,ST_Str10
-                print   16,4,ST_Str11
-                print   17,4,ST_Str12
+                print   7,4,ST_Str2
+                print   8,4,ST_Str3
+                print   9,4,ST_Str4
+                print   10,4,ST_Str5
+                print   11,4,ST_Str6
+                print   12,4,ST_Str7
+                print   13,4,ST_Str8
+                print   14,4,ST_Str9
+                print   16,2,ST_Str10
+                print   18,4,ST_Str11
+                print   19,4,ST_Str12
                 ret
 
 SE_Str          db      'ÚSome HintsÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿',0
                 db      '³                                      ³',0
                 db      'ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ',0
-SE_Str1         db      1,0Fh,'To run a file:',1,7,'  Enter  File Manager,',0
-SE_Str2         db      1,7,'select  .APL  file  you want to run,',0
-SE_Str3         db      1,7,'then press the <F1> key.',0
-SE_Str4         db      1,0Fh,'To boot a disk:',1,7,' Enter  Disk Manager,',0
-SE_Str5         db      1,7,'select  disk  file you want to boot,',0
-SE_Str6         db      1,7,'then press the <F1> key.',0
-SE_Str7         db      1,0Fh,'To change a key:',1,7,'Enter Keyboard setup',0
-SE_Str8         db      1,7,'and  press  key  you want to change,',0
-SE_Str9         db      1,7,'then select new ASCII code.',0
+SE_Str1         db      1,0Fh,'To boot a disk:',1,7,' Enter Disk Manager,',0
+SE_Str2         db      1,7,'highlight the .DSK file you want to',0
+SE_Str3         db      1,7,'boot, then press the <F1> key.',0
+SE_Str4         db      1,0Fh,'To run a file:',1,7,' Enter File Manager,',0
+SE_Str5         db      1,7,'highlight the .APL file you want to',0
+SE_Str6         db      1,7,'run, then press the <F1> key.',0
+SE_Str7         db      1,0Fh,'To remap a key: ',1,7,'Enter Keyboard Setup',0
+SE_Str8         db      1,7,'hit the key you want remapped, then',0
+SE_Str9         db      1,7,'pick an ASCII code to assign to it.',0
 SE_Str10        db      1,0Fh,'Realtime Mode:',1,7,' When realtime mode is',0
-SE_Str11        db      1,7,'ON  the computer will run  like real',0
-SE_Str12        db      1,7,'Apple ][ at 1 MHz.  You need fast PC',0
-SE_Str13        db      1,7,'to do that, for example a 486/SX/33.',0
-SE_Str14        db      1,7,'If  your computer  isn''t fast enough',0
-SE_Str15        db      1,7,'realtime mode goes OFF automatically',0
-SE_Str16        db      1,7,'and Appler runs faster than an Apple.',0
+SE_Str11        db      1,7,'ON, the emulator matches the speed',0
+SE_Str12        db      1,7,'of a real Apple ][ at 1 MHz. This',0
+SE_Str13        db      1,7,'requires at least a 386 CPU, or else',0
+SE_Str14        db      1,7,'realtime mode turns OFF, and the',0
+SE_Str15        db      1,7,'emulator will likely run faster.',0
 
 ShowHints:      gotoxy  3,40
                 mov     bx,offset SE_Str
-                mov     dh,21
+                mov     dh,20
                 call    DrawBox
                 print   5,42,SE_Str1
                 print   6,42,SE_Str2
@@ -208,7 +207,6 @@ ShowHints:      gotoxy  3,40
                 print   20,42,SE_Str13
                 print   21,42,SE_Str14
                 print   22,42,SE_Str15
-                print   23,42,SE_Str16
                 ret
 
 
