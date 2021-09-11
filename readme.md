@@ -67,6 +67,8 @@ This approach seems counter-intuitive, but only if difficult to write software i
 
 Besides, programmers love solving complex problems and take pride in exceptionally clever masterpieces. Wozniak himself set an example of what's possible, managing to fit in 12 KB of memory a Basic interpreter, a program editor, and a debugger (later, Apple licensed from Microsoft a better Basic interpreter that supported floating point math; it was called `APPLESOFT BASIC`, a name derived from the names of both Apple and Microsoft).
 
+---
+
 ## In popular culture
 
 The Holywood blockbuster The Terminator featured some 6502 code for Apple ][ in several scenes, seen on the Terminator's HUD:
@@ -103,6 +105,8 @@ Because incrementing `cl` leaves the `ZF` and `SF` in the correct state that mat
 
 All of these acrobatics are no longer needed, but back when we wrote this code Appler achieved 75% of the speed of a physical Apple ][ (which runs at 1 MHz) on a 4.75 MHz PC/XT.
 
+---
+
 ## Video Memory and I/O Memory
 
 Depending on the selected video mode, writes to some 6502 memory addresses need to be visualized to emulate the Apple ][ video controller. This complicates memory access emulation in general, since each instruction may need to do extra work depending on the (dynamic) address it uses.
@@ -111,11 +115,55 @@ This is implemented by individual emulation routines for each 256-byte page of t
 
 Both 40x24 text mode and low graphics mode are mapped to the PC 40x25 text mode. High graphics mode (280x192) is emulated at double horizontal resolution. Mixed graphics/text is supported as well.
 
+---
+
+## `HGR` Mode Emulation
+
+![Akuma](images/akuma.png)
+
+The Apple ][ high resolution graphics mode is commonly referred to as `HGR`, named after the corresponding BASIC command. In that mode, there are 280x192 pixels. The high bit from each byte of video memory selects between two color palettes, and the rest of the bits control 7 individual pixels:
+
+* If a pixel-controlling bit is clear, the corresponding pixel is off.
+* If a pixel-controlling bit is set, the corresponding pixel is on. Depending on the color palette bit:
+	* Pixels at even-numbered screen columns are either purple or blue;
+	* Pixels at odd-numbered screen columns are either green or orange;
+	* If two neighboring pixels are on, they become white.
+
+So, there are two blacks and two whites, and to see any other color, every other bit (pixel) must be clear (off). Here are the 6 non-black `HGR` colors, surrounded by the two whites, as rendered by Appler:
+
+![HGR colors](images/colors0.png)
+
+But how could a simple video controller from the 1970s implement such complex logic in hardware? How would neighboring pixels know about each other so they can turn white if they're both on? In fact they don't, and it's really simple (after all, it is Wozniak design), but you need to consider half-pixels. Indeed, Appler emulates `HGR` mode at the subpixel level, using double the horizontal resolution. Here are the same 6 colors, but in smaller bands and arranged vertically:
+
+![HGR colors](images/colors1.png)
+
+And now, the same image zoomed-in, so we can see the individual -- you guessed it -- not pixels, but subpixels:
+
+![HGR colors](images/colors2.png)
+
+Keep in mind, each vertical color line you see in this last image is half a pixel wide, two neighboring vertical lines making up a single vertical line of Apple ][ pixels. There are only 4 primary colors which are carefully selected so they combine together to produce the 6 perceived `HGR` colors; and there's no complex logic in hardware, if you light up all the bits in a byte, the colors "automatically" combine to produce white.
+
+At the time we wrote Appler we of course knew that the colors are supposed to be purple, blue, green, and orange, but we had never seen them displayed by an actual physical computer, because the Apple ][ displays that were available in Bulgaria were all monochrome-green. Alex looked at the schematics, and he used the actual resistor values of the DAC to calculate what the 4 primary colors should be. The values ended up in a table in the source code (because, sadly, they are not powers of two). So, when we first ran Appler on a color EGA display, it was very satisfying to see that the colors it displayed were indeed purple, blue, green and orange. :)
+
+As with everything else in Appler, the `HGR` emulation is extremely lean and mean, and there is a known issue (not a bug, since it was by design) that never got fixed. The way Alex wrote that code, bytes with the palette bit clear leave a half pixel artifact if cleared with `$80` (black 2), and vice versa. This doesn't seem to happen very often, but it happens a lot in some games. Mario Bros. by Atarisoft is one of them. These artifacts look like this:
+
+![HGR Issue](images/HGRissue.png)
+
+Since at this point speed isn't important at all, this can be fixed. Some other day. :)
+
+> (The very first version of Appler ran on a CGA display and it didn't have color. Also, for speed, each byte of video memory controlled 8, rather than 7 CGA pixels. At some point that code got discarded; Appler now requires EGA display).
+
+---
+
 ## Task Manager / Appler Utilities
 
-Appler has built-in Debugger, File Manager, Disk Manager, and Keyboard Setup utility. Like the emulation code itself, these utilities are written in 8086 assembly. Everything runs on a custom cooperative multi-tasking system, with a task manager switching between the Apple ][ emulator and the different utilities, without affecting their internal state.
+Appler has built-in Debugger, File Manager, Disk Manager, and Keyboard Setup utility. Like the emulation code itself, these utilities are written in 8086 assembly. Everything runs on a custom cooperative multi-tasking system, with a task manager switching between the Apple ][ emulator and the different utilities, without affecting their internal state (this is similar to the way multi-tasking is implemented in early versions of Macintosh OS and Windows).
 
-# Building
+The debugger is quite handy, I have fond memories of my college roommate Ivo using it to disarm the clever copy protection of an Apple ][ game he wrote all by himself. I recently asked Ivo why did the game have copy protection at all, since I didn't think it was distributed commercially. His answer:
+
+> Well, I wrote a sector editor (Emil's note: that's a program used to break copy protections), and then I thought hm, I should come up with an awesome unbreakable copy protection, and then I thought OK, I should write a game that I can copy-protect, and this is how Space Warrior (Космически боец) was created. There were in fact many levels of the copy protection: using invalid 6502 instructions to throw off boot tracers;  non-standard 6&2 system fields; sectors that were physically destroyed with a razor (the game checking that a specific area of the disk could not be read); half of each track written at a half-track offset (since the floppy disk motor could move the head at smaller than a single track increments) -- to name a few.
+
+# Building Appler
 
 I've created a [GitHub repo](https://github.com/zajo/TASM) that contains a TASM installation that can be used with [DOSBOX](https://www.dosbox.com/) to build Appler.
 
@@ -456,3 +504,5 @@ reset
 * Action: Evaluates an expression. Use `b` or `d` to specify the result type - binary or decimal (hexadecimal by default).
 
 When entering addresses or numbers, you can use simple mathematical expressions instead. The following operations are available: `+`, `-`, `*`, `/`, `|` (bitwise or), `&` (bitwise and), `^` (bitwise xor), `<` (shift left), `>` (shift right). There is no operator precedence and brackets are not supported -- the expression is evaluated from left to right. As usual, number entry is hexadecimal by default, the `@` prefix indicates decimal numbers, and the `%` prefix indicates binary.
+
+![KARATEKA](images/karateka.png)
