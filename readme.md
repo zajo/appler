@@ -27,9 +27,9 @@ Apple Computer started in Steve Wozniak's garage. He designed and put together t
 
 ![Apple I](images/Apple1.jpg)
 
-Notice the compact cassette player. Back in those days, when you booted up the computer, there was no software loaded on it. You either write the code every time you turn the power on, or else read it from a casette tape.
+Notice the compact cassette player. Back in those days, when you booted up the computer, there was no software loaded on it. You either write the code every time you turn the power on, or else read it from a cassette tape.
 
-Next was the Apple ][, which had a yellow-ish skin:
+Next was the Apple ][, which had a yellowish skin:
 
 ![IMKO2](images/IMKO2.jpg)
 
@@ -47,11 +47,11 @@ But enough about this Commie business. Naturally, the actual Apple ][  looked a 
 
 ![Apple II](images/Apple2.jpg)
 
-The Apple ][ uses the 6502 CPU, which was designed by a team lead by Chuck Peddle. The team worked for Motorolla and proposed an idea for a new, cheaper, faster CPU. The company rejected it, the entire team quit and joined MOS Technology, which produced what became known as the 6502 (the Bulgarians copied that too, making the 100% compatible CM630).
+The Apple ][ uses the 6502 CPU, which was designed by a team lead by Chuck Peddle. The team worked for Motorola and proposed an idea for a new, cheaper, faster CPU. The company rejected it, the entire team quit and joined MOS Technology, which produced what became known as the 6502 (the Bulgarians copied that too, making the 100% compatible CM630).
 
 But as great as the 6502 was, at the heart of Apple ][ is Wozniak's brilliant design. He alone designed the hardware as well as the system software.
 
-If one studied the overal system design, it became clear that Wozniak was driven by a simple principle: if there was a way to save 5c in production cost, at the expense of making the life of the programmer 100x more difficult, he'd totally go for it.
+If one studied the overall system design, it became clear that Wozniak was driven by a simple principle: if there was a way to save 5c in production cost, at the expense of making the life of the programmer 100x more difficult, he'd totally go for it.
 
 As an example, consider the floppy disk controller for Apple ][:
 
@@ -63,15 +63,17 @@ Just kidding. :) The above is the floppy disk controller for the IBM PC/XT. The 
 
 If you wonder how can these two cards do the same thing, they really don't. The IBM controller has its own CPU, supports DMA, and does a lot of heavy lifting that makes it easy to write the software. In contrast, the Wozniak design does about 10% of what most reasonable people would consider sufficient for it to be called Disk ][ Interface Card, and yet there it was, and it worked beautifully.
 
-This approach seems counter-intuitive, but only if difficult to write software is seen as a downside; yet software -- unlike hardware -- is free to distribute. The result was a cheap, powerful and interesting machine.
+As another example, consider the Apple ][ speaker. Most other computers at least have a simple timer that lets you play a sound with a given frequency. But on the Apple ][, each access of address `$C030` inverts the polarity of the speaker, and that's all of the support you get from the hardware. And yet, Paul Lutus gave us [The Electric Duet](https://arachnoid.com/electric_duet/index.html), which plays two voice music (though it produced an audible 14,080 Hz noise as a side effect of duty cycle modulation; Alex wrote his own player from scratch to fix this, and hacked into the binary code to replace the original player. This improved Electric Duet sounded [like this](images/jukebox.mp3)).
 
-Besides, programmers love solving complex problems and take pride in exceptionally clever masterpieces. Wozniak himself set an example of what's possible, managing to fit in 12 KB of memory a Basic interpreter, a program editor, and a debugger (later, Apple licensed from Microsoft a better Basic interpreter that supported floating point math; it was called `APPLESOFT BASIC`, a name derived from the names of both Apple and Microsoft).
+This minimalist approach seems counter-intuitive, but only if difficult to write software is seen as a downside; yet software -- unlike hardware -- is free to distribute. The result was a cheap, powerful and interesting machine.
+
+Besides, programmers love solving complex problems and take pride in exceptionally clever masterpieces. Wozniak himself set an example of what's possible, managing to fit in 12 KB of memory a Basic interpreter, a program editor, and a debugger.
 
 ---
 
 ## In popular culture
 
-The Holywood blockbuster The Terminator featured some 6502 code for Apple ][ in several scenes, seen on the Terminator's HUD:
+The Hollywood blockbuster The Terminator featured some 6502 code for Apple ][ in several scenes, seen on the Terminator's HUD:
 
 ![Terminator](images/terminator.jpg)
 
@@ -133,15 +135,15 @@ So, there are two blacks and two whites, and to see any other color, every other
 
 ![HGR colors](images/colors0.png)
 
-But how could a simple video controller from the 1970s implement such complex logic in hardware? How would neighboring pixels know about each other so they can turn white if they're both on? In fact they don't, and it's really simple (after all, it is Wozniak design), but you need to consider half-pixels. Indeed, Appler emulates `HGR` mode at the subpixel level, using double the horizontal resolution. Here are the same 6 colors, but in smaller bands and arranged vertically:
+But how could a simple video controller from the 1970s implement such complex logic in hardware? How would neighboring pixels know about each other so they can turn white if they're both on? In fact they don't, and it's really simple (after all, it is Wozniak design), but you need to consider half-pixels. Indeed, Appler emulates `HGR` mode at the sub-pixel level, using double the resolution horizontally. Here are the same 6 colors, but in smaller bands and turned at 90 degrees:
 
 ![HGR colors](images/colors1.png)
 
-And now, the same image zoomed-in, so we can see the individual -- you guessed it -- not pixels, but subpixels:
+And now, the same image zoomed-in, so we can see the individual -- you guessed it -- not pixels, but sub-pixels:
 
 ![HGR colors](images/colors2.png)
 
-Keep in mind, each vertical color line you see in this last image is half a pixel wide, two neighboring vertical lines making up a single vertical line of Apple ][ pixels. There are only 4 primary colors which are carefully selected so they combine together to produce the 6 perceived `HGR` colors; and there's no complex logic in hardware, if you light up all the bits in a byte, the colors "automatically" combine to produce white.
+Keep in mind, each vertical color line you see in this last image is half a pixel wide, two neighboring vertical lines making up a single vertical line of Apple ][ pixels. There are only 4 primary colors which are carefully selected so they combine together to produce the 6 perceived `HGR` colors; and there's no complex logic in hardware, if you light up two neighboring pixels, the colors "automatically" combine to produce white.
 
 At the time we wrote Appler we of course knew that the colors are supposed to be purple, blue, green, and orange, but we had never seen them displayed by an actual physical computer, because the Apple ][ displays that were available in Bulgaria were all monochrome-green. Alex looked at the schematics, and he used the actual resistor values of the DAC to calculate what the 4 primary colors should be. The values ended up in a table in the source code (because, sadly, they are not powers of two). So, when we first ran Appler on a color EGA display, it was very satisfying to see that the colors it displayed were indeed purple, blue, green and orange. :)
 
@@ -279,6 +281,8 @@ Now, hit `F2` to activate File Manager, and press `Alt+M` to highlight the `Memo
 
 Next time you run Appler, you can simply highlight an `.APL` file in the `Directory` window in File Manager and hit `F1` to run it.
 
+File Manager is also able to save the complete Apple ][ state in a file. To do this, when you make a new file in the `Memory` window, select `status` for `Type`.
+
 ---
 
 ## Disk Manager
@@ -361,7 +365,7 @@ regs
 asm
 * Format: `asm [<addr>]`
 * Example: `asm @768`
-* Action: Enters Assembler mode. If the address is missing, Debugger uses the address of the current (hilighted) instrunction (you can use <Alt+P> instead).
+* Action: Enters Assembler mode. If the address is missing, Debugger uses the address of the current (highlighted) instruction (you can use <Alt+P> instead).
 
 ea
 * Format: `ea [<addr>]`
