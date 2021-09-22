@@ -1,10 +1,12 @@
 # APPLER
 
-Alexander Patalenski  / Emil Dotchevski
+Alexander Patalenski | Emil Dotchevski
 
 # Introduction
 
-Appler is an Apple ][ emulator running on MS-DOS for IBM PC. It was developed in the 1990s, written in 8086 assembly. This distribution contains the executable binaries as well as the complete source code.
+Appler is an Apple ][ emulator for IBM PC, written in 8088 assembly, running on MS-DOS. It was developed in 1990, at a time when Apple IIe was still in production, which means that Appler is likely the first Apple ][ emulator ever made; it is probably the fastest also, although this distinction is no longer important.
+
+This distribution contains the executable binaries as well as the complete source code.
 
 At the time of this writing, Apple ][ is an antique and MS-DOS is obsolete. However, Appler still runs on [DOSBOX](https://www.dosbox.com/) on Windows or on Mac. So now you can play Apple ][ games running on Appler running on DOSBOX running on MacOS. :)
 
