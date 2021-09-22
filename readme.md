@@ -8,6 +8,19 @@ Appler is an Apple ][ emulator running on MS-DOS for IBM PC. It was developed in
 
 At the time of this writing, Apple ][ is an antique and MS-DOS is obsolete. However, Appler still runs on [DOSBOX](https://www.dosbox.com/) on Windows or on Mac. So now you can play Apple ][ games running on Appler running on DOSBOX running on MacOS. :)
 
+# Running Appler
+
+To download Appler, click the green `Code` button in GitHub, and in the drop-down menu select `Download ZIP`. Double-click the downloaded file to unzip it.
+
+Next, download and install DOSBOX from https://www.dosbox.com/. Run DOSBOX, and on its command prompt enter the following commands (replacing `<path-to-appler` with the location where you unzipped Appler):
+
+```
+mount c <path-to-appler>
+c:
+cd bin
+appler
+```
+
 # Support
 
 Feel free to create GitHub issues, hopefully I can help.
