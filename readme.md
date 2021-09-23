@@ -221,6 +221,10 @@ Next it executes the standard Apple ][ boot sequence. In the default configurati
 
 ![Lode Runner](images/LodeRunner.png)
 
+> Note: `APPLER.DSK` is formatted with Eagle Software GraphExt DOS. This is a Bulgarian operating system, written by (I think) Orlin Shopov. It is compatible with DOS 3.3, but supports a few extra commmands: `TYPE`, `MAKE`, `BOOT`, `MODE`, `SOUND`, `GLOAD`, `GSAVE`; the last two work with a special file type `G`, which is used to save compressed HGR image files:
+
+![Eagle DOS](images/EagleDos.png)
+
 # Emulated Hardware
 
 * The valid instructions of the 65C02 CPU
