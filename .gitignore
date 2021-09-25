@@ -4,3 +4,5 @@ src/*.EXE
 src/*.ROM
 src/*.DSK
 src/65C02.INC
+APL/*
+DSK/*
