@@ -38,7 +38,11 @@ Before talking about Appler, I should introduce the machine it emulates, the ama
 
 ## The humble beginnings
 
-Apple Computer started in Steve Wozniak's garage. He designed and put together the Apple I, which was sold as a kit, meaning the computer was sold barebones, and had to be assembled by the buyer. This is a nice surviving example, mounted in a briefcase:
+Apple Computer started in Steve Wozniak's apartment. Here he is, next to the other, more famous Steve:
+
+![Steve Wozniak and Steve Jobs](images/wozniak-and-jobs.jpg)
+
+Wozniak designed and put together the Apple I, which was sold as a kit, meaning the computer was sold barebones, and had to be assembled by the buyer. This is a nice surviving example, mounted in a briefcase:
 
 ![Apple I](images/Apple1.jpg)
 
@@ -57,6 +61,8 @@ It is perhaps unfair to introduce the illegal clone before the original American
 ![PRAVETZ 82](images/PRAVETZ82.jpg)
 
 I don't know how much one of these cost, because in Communist Bulgaria such things were considered "means of production" and nobody could own one. Instead, they were available for free use at schools and at public computing centers.
+
+> Interesting detail: the original Apple ][+ did not support lowercase letters in text mode. This design shortcomming worked out great for the Bulgarians, because it meant that Western software didn't generally attempt to display lowercase, so that section of the character set could be used to add Cyrillic letters in a backwards-compatible manner; it is as if Wozniak had reserved space for Cyrillic in the 7-bit character set.
 
 But enough about this Commie business. Naturally, the actual Apple ][  looked a lot nicer:
 
@@ -243,6 +249,10 @@ Next it executes the standard Apple ][ boot sequence. In the default configurati
 * Floppy Disk Controller and two Floppy Disk Drives
 
 I remember Alex wrote a program that attempted to execute, on the Apple ][, every invalid 6502 opcode. For the ones that didn't hang, we recorded as best as we could the change in the CPU state, and then he implemented a routine in Appler which acts according to our observations. "It's the Apple ][", he said, "people do all kinds of invalid things that work".
+
+Here is the output from an Apple ][ hardware detection program written in 2021 by Marc A. Golombeck, running on Appler:
+
+![Detected Hardware](images/golombeck.jpg)
 
 # Navigation
 
