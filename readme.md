@@ -610,7 +610,7 @@ Here is a page from the 8/7/1990 issue featuring Alex at line 4 and yours truly 
 
 ## III. The Electric Duet, improved
 
-This section preserves a bit of Alex genius for which I don't have a better place to store.
+This section preserves a bit of Alex's genius for which I don't have a better place to store.
 
 The Electric Duet is a music program for Apple ][ written by Paul Lutus, that plays music in two voices. It featured The Electronic Jukebox:
 
@@ -621,113 +621,113 @@ This was a mind blowing achievement. However, the original player program made a
 Paul Lutus has published the original player [here](https://arachnoid.com/electric_duet/index.html). The listing below shows his program next to Alex's version:
 
 ```
-Original (Paul Lutus)				Alex Patalenski
--------------------------			-------------------------
-0803:   A901   LDA #01				2800:   A900   LDA #00
-0805:   8509   STA 09				2802:   85D8   STA D8
-0807:   851D   STA 1D				2804:   85D6   STA D6
-0809:   48     PHA					2806:   85D7   STA D7
-080A:   48     PHA					2808:   A000   LDY #00
-080B:   48     PHA					280A:   B11E   LDA (1E),Y
-080C:   D015   BNE 0823				280C:   D001   BNE 280F
-080E:   C8     INY					280E:   60     RTS
-080F:   B11E   LDA (1E),Y			280F:   85D2   STA D2
-0811:   8509   STA 09				2811:   AD00C0 LDA C000
-0813:   C8     INY					2814:   30F8   BMI 280E
-0814:   B11E   LDA (1E),Y			2816:   A200   LDX #00
-0816:   851D   STA 1D				2818:   20B328 JSR 28B3
-0818:   A51E   LDA 1E				281B:   8D4C28 STA 284C
-081A:   18     CLC					281E:   8D5C28 STA 285C
-081B:   6903   ADC #03				2821:   8E4F28 STX 284F
-081D:   851E   STA 1E				2824:   8E5F28 STX 285F
-081F:   9002   BCC 0823				2827:   A201   LDX #01
-0821:   E61F   INC 1F				2829:   20B328 JSR 28B3
-0823:   A000   LDY #00				282C:   8D7628 STA 2876
-0825:   B11E   LDA (1E),Y			282F:   8D8628 STA 2886
-0827:   C901   CMP #01				2832:   8E7928 STX 2879
-0829:   F0E3   BEQ 080E				2835:   8E8928 STX 2889
-082B:   B00D   BCS 083A				2838:   A900   LDA #00
-082D:   68     PLA					283A:   A28A   LDX #8A
-082E:   68     PLA					283C:   A040   LDY #40
-082F:   68     PLA					283E:   85D3   STA D3
-0830:   A249   LDX #49				2840:   85D8   STA D8
-0832:   C8     INY					2842:   88     DEY
-0833:   B11E   LDA (1E),Y			2843:   D00E   BNE 2853
-0835:   D002   BNE 0839				2845:   A4D4   LDY D4
-0837:   A2C9   LDX #C9				2847:   24D8   BIT D8
-0839:   60     RTS					2849:   3019   BMI 2864
-083A:   8508   STA 08				284B:   2C30C0 BIT C030
-083C:   203008 JSR 0830				284E:   49A0   EOR #A0
-083F:   8E8608 STX 0886				2850:   4C6828 JMP 2868
-0842:   8506   STA 06				2853:   C4D6   CPY D6
-0844:   A609   LDX 09				2855:   D00C   BNE 2863
-0846:   4A     LSR					2857:   24D8   BIT D8
-0847:   CA     DEX					2859:   100A   BPL 2865
-0848:   D0FC   BNE 0846				285B:   2C30C0 BIT C030
-084A:   8D7F08 STA 087F				285E:   49A0   EOR #A0
-084D:   203008 JSR 0830				2860:   4C6928 JMP 2869
-0850:   8EBE08 STX 08BE				2863:   EA     NOP
-0853:   8507   STA 07				2864:   EA     NOP
-0855:   A61D   LDX 1D				2865:   EA     NOP
-0857:   4A     LSR					2866:   EA     NOP
-0858:   CA     DEX					2867:   EA     NOP
-0859:   D0FC   BNE 0857				2868:   EA     NOP
-085B:   8DB708 STA 08B7				2869:   EA     NOP
-085E:   68     PLA					286A:   85D8   STA D8
-085F:   A8     TAY					286C:   CA     DEX
-0860:   68     PLA					286D:   D00E   BNE 287D
-0861:   AA     TAX					286F:   A6D5   LDX D5
-0862:   68     PLA					2871:   24D8   BIT D8
-0863:   D003   BNE 0868				2873:   3019   BMI 288E
-0865:   2C30C0 BIT C030				2875:   2C30C0 BIT C030
-0868:   C900   CMP #00				2878:   49A0   EOR #A0
-086A:   3003   BMI 086F				287A:   4C9228 JMP 2892
-086C:   EA     NOP					287D:   E4D7   CPX D7
-086D:   1003   BPL 0872				287F:   D00C   BNE 288D
-086F:   2C30C0 BIT C030				2881:   24D8   BIT D8
-0872:   854E   STA 4E				2883:   100A   BPL 288F
-0874:   2C00C0 BIT C000				2885:   2C30C0 BIT C030
-0877:   30C0   BMI 0839				2888:   49A0   EOR #A0
-0879:   88     DEY					288A:   4C9328 JMP 2893
-087A:   D002   BNE 087E				288D:   EA     NOP
-087C:   F006   BEQ 0884				288E:   EA     NOP
-087E:   C000   CPY #00				288F:   EA     NOP
-0880:   F004   BEQ 0886				2890:   EA     NOP
-0882:   D004   BNE 0888				2891:   EA     NOP
-0884:   A406   LDY 06				2892:   EA     NOP
-0886:   4940   EOR #40				2893:   EA     NOP
-0888:   244E   BIT 4E				2894:   C6D3   DEC D3
-088A:   5007   BVC 0893				2896:   D007   BNE 289F
-088C:   7000   BVS 088E				2898:   C6D2   DEC D2
-088E:   1009   BPL 0899				289A:   F009   BEQ 28A5
-0890:   EA     NOP					289C:   4C4028 JMP 2840
-0891:   3009   BMI 089C				289F:   EA     NOP
-0893:   EA     NOP					28A0:   EA     NOP
-0894:   3003   BMI 0899				28A1:   EA     NOP
-0896:   EA     NOP					28A2:   4C4028 JMP 2840
-0897:   1003   BPL 089C				28A5:   A51E   LDA 1E
-0899:   CD30C0 CMP C030				28A7:   18     CLC
-089C:   C64F   DEC 4F				28A8:   6903   ADC #03
-089E:   D011   BNE 08B1				28AA:   851E   STA 1E
-08A0:   C608   DEC 08				28AC:   9002   BCC 28B0
-08A2:   D00D   BNE 08B1				28AE:   E61F   INC 1F
-08A4:   5003   BVC 08A9				28B0:   4C0828 JMP 2808
-08A6:   2C30C0 BIT C030				28B3:   C8     INY
-08A9:   48     PHA					28B4:   B11E   LDA (1E),Y
-08AA:   8A     TXA					28B6:   08     PHP
-08AB:   48     PHA					28B7:   95D4   STA D4,X
-08AC:   98     TYA					28B9:   C905   CMP #05
-08AD:   48     PHA					28BB:   9002   BCC 28BF
-08AE:   4C1808 JMP 0818				28BD:   4A     LSR
-08B1:   CA     DEX					28BE:   4A     LSR
-08B2:   D002   BNE 08B6				28BF:   4A     LSR
-08B4:   F006   BEQ 08BC				28C0:   4A     LSR
-08B6:   E000   CPX #00				28C1:   95D6   STA D6,X
-08B8:   F004   BEQ 08BE				28C3:   28     PLP
-08BA:   D004   BNE 08C0				28C4:   F004   BEQ 28CA
-08BC:   A607   LDX 07				28C6:   A930   LDA #30
-08BE:   4980   EOR #80				28C8:   A2A0   LDX #A0
-08C0:   70A3   BVS 0865				28CA:   60     RTS
+Original (Paul Lutus)            Alex Patalenski
+-------------------------        -------------------------
+0803:   A901   LDA #01           2800:   A900   LDA #00
+0805:   8509   STA 09            2802:   85D8   STA D8
+0807:   851D   STA 1D            2804:   85D6   STA D6
+0809:   48     PHA               2806:   85D7   STA D7
+080A:   48     PHA               2808:   A000   LDY #00
+080B:   48     PHA               280A:   B11E   LDA (1E),Y
+080C:   D015   BNE 0823          280C:   D001   BNE 280F
+080E:   C8     INY               280E:   60     RTS
+080F:   B11E   LDA (1E),Y        280F:   85D2   STA D2
+0811:   8509   STA 09            2811:   AD00C0 LDA C000
+0813:   C8     INY               2814:   30F8   BMI 280E
+0814:   B11E   LDA (1E),Y        2816:   A200   LDX #00
+0816:   851D   STA 1D            2818:   20B328 JSR 28B3
+0818:   A51E   LDA 1E            281B:   8D4C28 STA 284C
+081A:   18     CLC               281E:   8D5C28 STA 285C
+081B:   6903   ADC #03           2821:   8E4F28 STX 284F
+081D:   851E   STA 1E            2824:   8E5F28 STX 285F
+081F:   9002   BCC 0823          2827:   A201   LDX #01
+0821:   E61F   INC 1F            2829:   20B328 JSR 28B3
+0823:   A000   LDY #00           282C:   8D7628 STA 2876
+0825:   B11E   LDA (1E),Y        282F:   8D8628 STA 2886
+0827:   C901   CMP #01           2832:   8E7928 STX 2879
+0829:   F0E3   BEQ 080E          2835:   8E8928 STX 2889
+082B:   B00D   BCS 083A          2838:   A900   LDA #00
+082D:   68     PLA               283A:   A28A   LDX #8A
+082E:   68     PLA               283C:   A040   LDY #40
+082F:   68     PLA               283E:   85D3   STA D3
+0830:   A249   LDX #49           2840:   85D8   STA D8
+0832:   C8     INY               2842:   88     DEY
+0833:   B11E   LDA (1E),Y        2843:   D00E   BNE 2853
+0835:   D002   BNE 0839          2845:   A4D4   LDY D4
+0837:   A2C9   LDX #C9           2847:   24D8   BIT D8
+0839:   60     RTS               2849:   3019   BMI 2864
+083A:   8508   STA 08            284B:   2C30C0 BIT C030
+083C:   203008 JSR 0830          284E:   49A0   EOR #A0
+083F:   8E8608 STX 0886          2850:   4C6828 JMP 2868
+0842:   8506   STA 06            2853:   C4D6   CPY D6
+0844:   A609   LDX 09            2855:   D00C   BNE 2863
+0846:   4A     LSR               2857:   24D8   BIT D8
+0847:   CA     DEX               2859:   100A   BPL 2865
+0848:   D0FC   BNE 0846          285B:   2C30C0 BIT C030
+084A:   8D7F08 STA 087F          285E:   49A0   EOR #A0
+084D:   203008 JSR 0830          2860:   4C6928 JMP 2869
+0850:   8EBE08 STX 08BE          2863:   EA     NOP
+0853:   8507   STA 07            2864:   EA     NOP
+0855:   A61D   LDX 1D            2865:   EA     NOP
+0857:   4A     LSR               2866:   EA     NOP
+0858:   CA     DEX               2867:   EA     NOP
+0859:   D0FC   BNE 0857          2868:   EA     NOP
+085B:   8DB708 STA 08B7          2869:   EA     NOP
+085E:   68     PLA               286A:   85D8   STA D8
+085F:   A8     TAY               286C:   CA     DEX
+0860:   68     PLA               286D:   D00E   BNE 287D
+0861:   AA     TAX               286F:   A6D5   LDX D5
+0862:   68     PLA               2871:   24D8   BIT D8
+0863:   D003   BNE 0868          2873:   3019   BMI 288E
+0865:   2C30C0 BIT C030          2875:   2C30C0 BIT C030
+0868:   C900   CMP #00           2878:   49A0   EOR #A0
+086A:   3003   BMI 086F          287A:   4C9228 JMP 2892
+086C:   EA     NOP               287D:   E4D7   CPX D7
+086D:   1003   BPL 0872          287F:   D00C   BNE 288D
+086F:   2C30C0 BIT C030          2881:   24D8   BIT D8
+0872:   854E   STA 4E            2883:   100A   BPL 288F
+0874:   2C00C0 BIT C000          2885:   2C30C0 BIT C030
+0877:   30C0   BMI 0839          2888:   49A0   EOR #A0
+0879:   88     DEY               288A:   4C9328 JMP 2893
+087A:   D002   BNE 087E          288D:   EA     NOP
+087C:   F006   BEQ 0884          288E:   EA     NOP
+087E:   C000   CPY #00           288F:   EA     NOP
+0880:   F004   BEQ 0886          2890:   EA     NOP
+0882:   D004   BNE 0888          2891:   EA     NOP
+0884:   A406   LDY 06            2892:   EA     NOP
+0886:   4940   EOR #40           2893:   EA     NOP
+0888:   244E   BIT 4E            2894:   C6D3   DEC D3
+088A:   5007   BVC 0893          2896:   D007   BNE 289F
+088C:   7000   BVS 088E          2898:   C6D2   DEC D2
+088E:   1009   BPL 0899          289A:   F009   BEQ 28A5
+0890:   EA     NOP               289C:   4C4028 JMP 2840
+0891:   3009   BMI 089C          289F:   EA     NOP
+0893:   EA     NOP               28A0:   EA     NOP
+0894:   3003   BMI 0899          28A1:   EA     NOP
+0896:   EA     NOP               28A2:   4C4028 JMP 2840
+0897:   1003   BPL 089C          28A5:   A51E   LDA 1E
+0899:   CD30C0 CMP C030          28A7:   18     CLC
+089C:   C64F   DEC 4F            28A8:   6903   ADC #03
+089E:   D011   BNE 08B1          28AA:   851E   STA 1E
+08A0:   C608   DEC 08            28AC:   9002   BCC 28B0
+08A2:   D00D   BNE 08B1          28AE:   E61F   INC 1F
+08A4:   5003   BVC 08A9          28B0:   4C0828 JMP 2808
+08A6:   2C30C0 BIT C030          28B3:   C8     INY
+08A9:   48     PHA               28B4:   B11E   LDA (1E),Y
+08AA:   8A     TXA               28B6:   08     PHP
+08AB:   48     PHA               28B7:   95D4   STA D4,X
+08AC:   98     TYA               28B9:   C905   CMP #05
+08AD:   48     PHA               28BB:   9002   BCC 28BF
+08AE:   4C1808 JMP 0818          28BD:   4A     LSR
+08B1:   CA     DEX               28BE:   4A     LSR
+08B2:   D002   BNE 08B6          28BF:   4A     LSR
+08B4:   F006   BEQ 08BC          28C0:   4A     LSR
+08B6:   E000   CPX #00           28C1:   95D6   STA D6,X
+08B8:   F004   BEQ 08BE          28C3:   28     PLP
+08BA:   D004   BNE 08C0          28C4:   F004   BEQ 28CA
+08BC:   A607   LDX 07            28C6:   A930   LDA #30
+08BE:   4980   EOR #80           28C8:   A2A0   LDX #A0
+08C0:   70A3   BVS 0865          28CA:   60     RTS
 08C2:   EA     NOP
 08C3:   50A3   BVC 0868
 ```
