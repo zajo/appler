@@ -584,7 +584,7 @@ As mentioned earlier, in 1980s Bulgarian-made Apple ][ clones were available for
 
 ![Computer club](images/computers.jpg)
 
-The reason why Bulgaria had developed semiconductor manufacturing is that in the Warsaw pact there was specialization of sorts for each member country, and Bulgaria was one of the members that specialized in personal computers. There were several brands, the most prominant one was Pravetz (Правец), named after the birth place of the Commpnist Party leader. The factory and the research facilities were located in Pravetz as well.
+The reason why Bulgaria had developed semiconductor manufacturing is that in the Warsaw pact there was specialization of sorts for each member country, and Bulgaria was one of the members that specialized in personal computers. There were several brands, the most prominent one was Pravetz (Правец), named after the birth place of the Commpnist Party leader. The factory and the research facilities were located in Pravetz as well.
 
 Besides the Apple ][ clone, the Pravetz factory produced IBM PC/XT clones, as well as a clone of the French Oric Atmos home computer under the name Pravetz-8D, pictured below with instruction manual in Russian -- indeed, the Soviet Union was a primary export market:
 
